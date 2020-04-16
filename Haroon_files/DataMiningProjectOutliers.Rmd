@@ -1,0 +1,597 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+setwd("/Users/zaynabsaeed/Documents/R_Assignments")
+
+data_train <- read.csv("diabetic_data.csv", sep = ",", header = TRUE)
+id_train <- read.csv("IDs_mapping.csv", sep = ",", header = TRUE)
+
+install.packages("rmarkdown")
+install.packages("plyr")
+install.packages("ggplot2")
+
+library(plyr)
+library(ggplot2)
+library(rmarkdown)
+
+
+render("DataMiningProjectOutliers.Rmd")
+
+#target is readmitted
+
+#predictors are medication taken, age, and diagnosis_number
+```{r}
+
+#age ANALYSIS
+
+#converting age to numerical form
+age.num <- revalue(x = data_train$age, replace = c("[0-10)" = 0, "[10-20)" = 1,
+                                                   "[20-30)" = 2, "[30-40)" = 3,
+                                                   "[40-50)" = 4, "[50-60)" = 5, 
+                                                   "[60-70)" = 6, "[70-80)" = 7,
+                                                   "[80-90)" = 8, "[90,100)" = 9))
+
+data_train$age_numeric <-as.numeric(levels(age.num))[age.num]
+
+hist(data_train$age_numeric,xlab="age_numeric", 
+     main = "Historgram of age_numeric")
+
+#Standardizing the data
+data_train$age_numeric_z <- scale(x=data_train$age_numeric)
+
+#Identify outliers
+data_outliers_age <- data_train[which(data_train$age_numeric_z < -3 | 
+                                                data_train$age_numeric_z > 3),]
+#852 outliers detected
+```
+
+
+```{r}
+
+#number_diagnoses ANALYSIS
+
+#Standardizing the data
+data_train$number_diagnoses_z <- scale(x=data_train$number_diagnoses)
+
+#Identify outliers
+data_outliers_number_diagnoses <- data_train[which(data_train$number_diagnoses_z < -3 | 
+                                        data_train$number_diagnoses_z > 3),]
+#281 outliers detected
+
+#MEDICATION TYPES ANALYSIS
+
+#metformin 
+#converting metformin to numerical form
+met.num <- revalue(x = data_train$metformin, replace = c("No" = 0, "Down" = 1, "Steady" = 2, "Up" = 3))
+
+data_train$metformin_numeric <-as.numeric(levels(met.num))[met.num]
+
+hist(data_train$metformin_numeric,xlab="metformin_numeric", 
+     main = "Historgram of metformin_numeric")
+
+#Standardizing the data
+data_train$metformin_numeric_z <- scale(x=data_train$metformin_numeric)
+
+#Identify outliers
+data_outliers_metformin <- data_train[which(data_train$metformin_numeric_z < -3 | 
+                                        data_train$metformin_numeric_z > 3),]
+#1067 outliers detected
+```
+
+
+```{r}
+
+#repaglinide
+#converting repaglinide to numerical form
+rep.num <- revalue(x = data_train$repaglinide, replace = c("No" = 0, "Down" = 1, "Steady" = 2, "Up" = 3))
+
+data_train$repaglinide_numeric <-as.numeric(levels(rep.num))[rep.num]
+
+hist(data_train$repaglinide_numeric,xlab="repaglinide_numeric", 
+     main = "Historgram of repaglinide_numeric")
+
+#Standardizing the data
+data_train$repaglinide_numeric_z <- scale(x=data_train$repaglinide_numeric)
+
+#Identify outliers
+data_outliers_repaglinide <- data_train[which(data_train$repaglinide_numeric_z < -3 | 
+                                              data_train$repaglinide_numeric_z > 3),]
+#1539 outliers detected
+
+
+```
+
+```{r}
+
+#nateglinide
+#converting nateglinide to numerical form
+nat.num <- revalue(x = data_train$nateglinide, replace = c("No" = 0, "Down" = 1, "Steady" = 2, "Up" = 3))
+
+data_train$nateglinide_numeric <-as.numeric(levels(nat.num))[nat.num]
+
+hist(data_train$nateglinide_numeric,xlab="natglinide_numeric", 
+     main = "Historgram of natglinide_numeric")
+
+#Standardizing the data
+data_train$natglinide_numeric_z <- scale(x=data_train$nateglinide_numeric)
+
+#Identify outliers
+data_outliers_natglinide <- data_train[which(data_train$natglinide_numeric_z < -3 | 
+                                                data_train$natglinide_numeric_z > 3),]
+#703 outliers detected
+
+```
+
+
+```{r}
+
+#chlorpropamide
+#converting chlorpropamide to numerical form
+chl.num <- revalue(x = data_train$chlorpropamide, replace = c("No" = 0, "Down" = 1, "Steady" = 2, "Up" = 3))
+
+data_train$chlorpropamide_numeric <-as.numeric(levels(chl.num))[chl.num]
+
+hist(data_train$chlorpropamide_numeric,xlab="chlorpropamide_numeric", 
+     main = "Historgram of chlorpropamide_numeric")
+
+#Standardizing the data
+data_train$chlorpropamide_numeric_z <- scale(x=data_train$chlorpropamide_numeric)
+
+#Identify outliers
+data_outliers_chlorpropamide <- data_train[which(data_train$chlorpropamide_numeric_z < -3 | 
+                                               data_train$chlorpropamide_numeric_z > 3),]
+#86 outliers detected
+
+```
+
+
+
+```{r}
+
+#glimepiride
+#converting glimepiride to numerical form
+gli.num <- revalue(x = data_train$glimepiride, replace = c("No" = 0, "Down" = 1, "Steady" = 2, "Up" = 3))
+
+data_train$glimepiride_numeric <-as.numeric(levels(gli.num))[gli.num]
+
+hist(data_train$glimepiride_numeric,xlab="glimepiride_numeric", 
+     main = "Historgram of glimepiride_numeric")
+
+#Standardizing the data
+data_train$glimepiride_numeric_z <- scale(x=data_train$glimepiride_numeric)
+
+#Identify outliers
+data_outliers_glimepiride <- data_train[which(data_train$glimepiride_numeric_z < -3 | 
+                                                   data_train$glimepiride_numeric_z > 3),]
+#4997 outliers detected
+
+```
+
+
+
+```{r}
+
+#acetohexamide
+#converting acetohexamide to numerical form
+ace.num <- revalue(x = data_train$acetohexamide, replace = c("No" = 0, "Steady" = 1))
+#suprisingly, "Down" and "Up" were not detected in this column
+
+data_train$acetohexamide_numeric <-as.numeric(levels(ace.num))[ace.num]
+
+hist(data_train$acetohexamide_numeric,xlab="acetohexamide_numeric", 
+     main = "Historgram of acetohexamide_numeric")
+
+#Standardizing the data
+data_train$acetohexamide_numeric_z <- scale(x=data_train$acetohexamide_numeric)
+
+#Identify outliers
+data_outliers_acetohexamide <- data_train[which(data_train$acetohexamide_numeric_z < -3 | 
+                                                data_train$acetohexamide_numeric_z > 3),]
+#1 outlier detected
+
+```
+
+
+
+```{r}
+
+#glipizide
+#converting glipizide to numerical form
+glip.num <- revalue(x = data_train$glipizide, replace = c("No" = 0, "Down" = 1, "Steady" = 2, "Up" = 3))
+
+data_train$glipizide_numeric <-as.numeric(levels(glip.num))[glip.num]
+
+hist(data_train$glipizide_numeric,xlab="glipizidenumeric", 
+     main = "Historgram of glipizide_numeric")
+
+#Standardizing the data
+data_train$glipizide_numeric_z <- scale(x=data_train$glipizide_numeric)
+
+#Identify outliers
+data_outliers_glipizide <- data_train[which(data_train$glipizide_numeric_z < -3 | 
+                                                data_train$glipizide_numeric_z > 3),]
+#770 outliers detected
+
+```
+
+
+
+
+
+```{r}
+
+#glyburide
+#converting glyburide to numerical form
+gly.num <- revalue(x = data_train$glyburide, replace = c("No" = 0, "Down" = 1, "Steady" = 2, "Up" = 3))
+
+data_train$glyburide_numeric <-as.numeric(levels(gly.num))[gly.num]
+
+hist(data_train$glyburide_numeric,xlab="glyburide_numeric", 
+     main = "Historgram of glyburide_numeric")
+
+#Standardizing the data
+data_train$glyburide_numeric_z <- scale(x=data_train$glyburide_numeric)
+
+#Identify outliers
+data_outliers_glyburide <- data_train[which(data_train$glyburide_numeric_z < -3 | 
+                                              data_train$glyburide_numeric_z > 3),]
+#812 outliers detected
+
+```
+
+
+```{r}
+
+#tolbutamide
+#converting tolbutamide to numerical form
+tol.num <- revalue(x = data_train$tolbutamide, replace = c("No" = 0, "Down" = 1, "Steady" = 2, "Up" = 3))
+
+data_train$tolbutamide_numeric <-as.numeric(levels(tol.num))[tol.num]
+
+hist(data_train$tolbutamide_numeric,xlab="tolbutamide_numeric", 
+     main = "Historgram of tolbutamide_numeric")
+
+#Standardizing the data
+data_train$tolbutamide_numeric_z <- scale(x=data_train$tolbutamide_numeric)
+
+#Identify outliers
+data_outliers_tolbutamide <- data_train[which(data_train$tolbutamide_numeric_z < -3 | 
+                                              data_train$tolbutamide_numeric_z > 3),]
+#23 outliers detected
+
+```
+
+
+
+```{r}
+
+#pioglitazone
+#converting tolbutamide to numerical form
+pio.num <- revalue(x = data_train$pioglitazone, replace = c("No" = 0, "Down" = 1, "Steady" = 2, "Up" = 3))
+
+data_train$pioglitazone_numeric <-as.numeric(levels(pio.num))[pio.num]
+
+hist(data_train$pioglitazone_numeric,xlab="pioglitazone_numeric", 
+     main = "Historgram of pioglitazone_numeric")
+
+#Standardizing the data
+data_train$pioglitazone_numeric_z <- scale(x=data_train$pioglitazone_numeric)
+
+#Identify outliers
+data_outliers_pioglitazone <- data_train[which(data_train$pioglitazone_numeric_z < -3 | 
+                                                data_train$pioglitazone_numeric_z > 3),]
+#7210 outliers detected
+
+```
+
+
+
+
+
+```{r}
+
+#rosiglitazone
+#converting rosiglitazone to numerical form
+ros.num <- revalue(x = data_train$rosiglitazone, replace = c("No" = 0, "Down" = 1, "Steady" = 2, "Up" = 3))
+
+data_train$rosiglitazone_numeric <-as.numeric(levels(ros.num))[ros.num]
+
+hist(data_train$rosiglitazone_numeric,xlab="rosiglitazone_numeric", 
+     main = "Historgram of rosiglitazone_numeric")
+
+#Standardizing the data
+data_train$rosiglitazone_numeric_z <- scale(x=data_train$rosiglitazone_numeric)
+
+#Identify outliers
+data_outliers_rosiglitazone <- data_train[which(data_train$rosiglitazone_numeric_z < -3 | 
+                                                 data_train$rosiglitazone_numeric_z > 3),]
+#6278 outliers detected
+
+```
+
+
+
+
+
+```{r}
+
+#acarbose
+#converting acarbose to numerical form
+aca.num <- revalue(x = data_train$acarbose, replace = c("No" = 0, "Down" = 1, "Steady" = 2, "Up" = 3))
+
+data_train$acarbose_numeric <-as.numeric(levels(aca.num))[aca.num]
+
+hist(data_train$acarbose_numeric,xlab="acarbose_numeric", 
+     main = "Historgram of acarbose_numeric")
+
+#Standardizing the data
+data_train$acarbose_numeric_z <- scale(x=data_train$acarbose_numeric)
+
+#Identify outliers
+data_outliers_acarbose <- data_train[which(data_train$acarbose_numeric_z < -3 | 
+                                                  data_train$acarbose_numeric_z > 3),]
+#308 outliers detected
+
+```
+
+
+
+```{r}
+
+#miglitol
+#converting miglitol to numerical form
+mig.num <- revalue(x = data_train$miglitol, replace = c("No" = 0, "Down" = 1, "Steady" = 2, "Up" = 3))
+
+data_train$miglitol_numeric <-as.numeric(levels(mig.num))[mig.num]
+
+hist(data_train$miglitol_numeric,xlab="miglitol_numeric", 
+     main = "Historgram of miglitol_numeric")
+
+#Standardizing the data
+data_train$miglitol_numeric_z <- scale(x=data_train$miglitol_numeric)
+
+#Identify outliers
+data_outliers_miglitol <- data_train[which(data_train$miglitol_numeric_z < -3 | 
+                                             data_train$miglitol_numeric_z > 3),]
+#38 outliers detected
+
+```
+
+
+```{r}
+
+#troglitazone
+#converting troglitazone to numerical form
+tro.num <- revalue(x = data_train$troglitazone, replace = c("No" = 0, "Steady" = 1))
+#suprisingly, "Down" and "Up" were not detected in this column
+
+data_train$troglitazone_numeric <-as.numeric(levels(tro.num))[tro.num]
+
+hist(data_train$troglitazone_numeric,xlab="troglitazone_numeric", 
+     main = "Historgram of troglitazone_numeric")
+
+#Standardizing the data
+data_train$troglitazone_numeric_z <- scale(x=data_train$troglitazone_numeric)
+
+#Identify outliers
+data_outliers_troglitazone <- data_train[which(data_train$troglitazone_numeric_z < -3 | 
+                                             data_train$troglitazone_numeric_z > 3),]
+#3 outliers detected
+
+
+```
+
+```{r}
+
+#tolazamide
+#converting tolazamide to numerical form
+tolz.num <- revalue(x = data_train$tolazamide, replace = c("No" = 0, "Steady" = 1, "Up" = 2))
+#suprisingly, "Down" was not detected in this column
+
+data_train$tolazamide_numeric <-as.numeric(levels(tolz.num))[tolz.num]
+
+hist(data_train$tolazamide_numeric,xlab="tolazamide_numeric", 
+     main = "Historgram of tolazamide_numeric")
+
+#Standardizing the data
+data_train$tolazamide_numeric_z <- scale(x=data_train$tolazamide_numeric)
+
+#Identify outliers
+data_outliers_tolazamide <- data_train[which(data_train$ttolazamide_numeric_z < -3 | 
+                                                 data_train$tolazamide_numeric_z > 3),]
+#0 outliers detected
+
+
+```
+
+
+```{r}
+
+#examide
+#converting examide to numerical form
+exa.num <- revalue(x = data_train$examide, replace = c("No" = 0))
+#"Down", "Steady", and "Up" were not present in column
+
+data_train$examide_numeric <-as.numeric(levels(exa.num))[exa.num]
+
+hist(data_train$examide_numeric,xlab="examide_numeric", 
+     main = "Historgram of examide_numeric")
+
+#Standardizing the data
+data_train$examide_numeric_z <- scale(x=data_train$examide_numeric)
+
+#Identify outliers
+data_outliers_examide <- data_train[which(data_train$examide_numeric_z < -3 | 
+                                             data_train$examide_numeric_z > 3),]
+#0 outliers detected
+```
+
+
+
+
+
+```{r}
+
+#citoglipton
+#converting citoglipton to numerical form
+cit.num <- revalue(x = data_train$citoglipton, replace = c("No" = 0))
+
+data_train$citoglipton_numeric <-as.numeric(levels(cit.num))[cit.num]
+
+hist(data_train$citoglipton_numeric,xlab="citoglipton_numeric", 
+     main = "Historgram of citoglipton_numeric")
+
+#Standardizing the data
+data_train$citoglipton_numeric_z <- scale(x=data_train$citoglipton_numeric)
+
+#Identify outliers
+data_outliers_citoglipton <- data_train[which(data_train$citoglipton_numeric_z < -3 | 
+                                             data_train$citoglipton_numeric_z > 3),]
+#0 outliers detected
+
+```
+
+
+```{r}
+
+#insulin
+#converting insulin to numerical form
+ins.num <- revalue(x = data_train$insulin, replace = c("No" = 0, "Down" = 1, "Steady" = 2, "Up" = 3))
+
+data_train$insulin_numeric <-as.numeric(levels(ins.num))[ins.num]
+
+hist(data_train$insulin_numeric,xlab="insulin_numeric", 
+     main = "Historgram of insulin_numeric")
+
+#Standardizing the data
+data_train$insulin_numeric_z <- scale(x=data_train$insulin_numeric)
+
+#Identify outliers
+data_outliers_insulin <- data_train[which(data_train$insulin_numeric_z < -3 | 
+                                             data_train$insulin_numeric_z > 3),]
+#0 outliers detected
+
+```
+
+
+
+```{r}
+
+#glyburide.metformin
+#converting glyburide.metformin to numerical form
+glym.num <- revalue(x = data_train$glyburide.metformin, replace = c("No" = 0, "Down" = 1, "Steady" = 2, "Up" = 3))
+
+data_train$glyburide.metformin_numeric <-as.numeric(levels(glym.num))[glym.num]
+
+hist(data_train$glyburide.metformin_numeric,xlab="glyburide.metformin_numeric", 
+     main = "Historgram of glyburide.metformin_numeric")
+
+#Standardizing the data
+data_train$glyburide.metformin_numeric_z <- scale(x=data_train$glyburide.metformin_numeric)
+
+#Identify outliers
+data_outliers_glyburide.metformin <- data_train[which(data_train$glyburide.metformin_numeric_z < -3 | 
+                                            data_train$glyburide.metformin_numeric_z > 3),]
+#706 outliers detected
+
+```
+
+
+
+```{r}
+
+
+#glipizide.metformin
+#converting glipizide.metformin to numerical form
+glipm.num <- revalue(x = data_train$glipizide.metformin, replace = c("No" = 0, "Steady" = 1))
+#"Down" and "Up" not present in column
+
+data_train$glipizide.metformin_numeric <-as.numeric(levels(glipm.num))[glipm.num]
+
+hist(data_train$glipizide.metformin_numeric,xlab="glipizide.metformin_numeric", 
+     main = "Historgram of glipizide.metformin_numeric")
+
+#Standardizing the data
+data_train$glipizide.metformin_numeric_z <- scale(x=data_train$glipizide.metformin_numeric)
+
+#Identify outliers
+data_outliers_glipizide.metformin <- data_train[which(data_train$glipizide.metformin_numeric_z < -3 | 
+                                                        data_train$glipizide.metformin_numeric_z > 3),]
+#13 outliers detected
+
+```
+
+
+
+```{r}
+
+#glimepiride.pioglitazone
+#converting glimepiride.pioglitazone to numerical form
+glip.num <- revalue(x = data_train$glimepiride.pioglitazone, replace = c("No" = 0, "Steady" = 1))
+#"Down" and "Up" not present in column
+
+data_train$glimepiride.pioglitazone_numeric <-as.numeric(levels(glip.num))[glip.num]
+
+hist(data_train$glimepiride.pioglitazone_numeric,xlab="glimepiride.pioglitazone_numeric", 
+     main = "Historgram of glimepiride.pioglitazone_numeric")
+
+#Standardizing the data
+data_train$glimepiride.pioglitazone_numeric_z <- scale(x=data_train$glimepiride.pioglitazone_numeric)
+
+#Identify outliers
+data_outliers_glimepiride.pioglitazone <- data_train[which(data_train$glimepiride.pioglitazone_numeric_z < -3 | 
+                                                        data_train$glimepiride.pioglitazone_numeric_z > 3),]
+#1 outlier detected
+
+
+```
+
+
+```{r}
+
+#metformin.rosiglitazone
+#converting metformin.rosiglitazone to numerical form
+metr.num <- revalue(x = data_train$metformin.rosiglitazone, replace = c("No" = 0, "Steady" = 1))
+#"Down" and "Up" not present in column
+
+data_train$metformin.rosiglitazone_numeric <-as.numeric(levels(metr.num))[metr.num]
+
+hist(data_train$metformin.rosiglitazone_numeric,xlab="metformin.rosiglitazone_numeric", 
+     main = "Historgram of metformin.rosiglitazone_numeric")
+
+#Standardizing the data
+data_train$metformin.rosiglitazone_numeric_z <- scale(x=data_train$metformin.rosiglitazone_numeric)
+
+#Identify outliers
+data_outliers_metformin.rosiglitazone <- data_train[which(data_train$metformin.rosiglitazone_numeric_z < -3 | 
+                                                        data_train$metformin.rosiglitazone_numeric_z > 3),]
+#2 outliers detected
+```
+
+
+
+
+```{r}
+
+#metformin.pioglitazone
+#converting metformin.pioglitazone to numerical form
+metp.num <- revalue(x = data_train$metformin.pioglitazone, replace = c("No" = 0, "Steady" = 1))
+#"Down" and "Up" not present in column
+
+
+data_train$metformin.pioglitazone_numeric <-as.numeric(levels(metp.num))[metp.num]
+
+hist(data_train$metformin.pioglitazone_numeric,xlab="metformin.pioglitazone_numeric", 
+     main = "Historgram of metformin.pioglitazone_numeric")
+
+#Standardizing the data
+data_train$metformin.pioglitazone_numeric_z <- scale(x=data_train$metformin.pioglitazone_numeric)
+
+#Identify outliers
+data_outliers_metformin.pioglitazone <- data_train[which(data_train$metformin.pioglitazone_numeric_z < -3 | 
+                                                        data_train$metformin.pioglitazone_numeric_z > 3),]
+#1 outlier detected
+```
+

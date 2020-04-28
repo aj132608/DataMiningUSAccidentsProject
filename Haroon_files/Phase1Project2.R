@@ -61,6 +61,9 @@ colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
+#Establishing Baseline Performance
+#This model would be classified as a K-nary Classification where all the predictions
+#will belong to the "NO" outcome.
 
 
 
@@ -101,6 +104,9 @@ colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
+#Establishing Baseline Performance
+#This model would be classified as a K-nary Classification where all the predictions
+#will belong to the "No" outcome.
 
 
 #REPAGLINIDE analysis
@@ -139,6 +145,11 @@ colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
+#Establishing Baseline Performance
+#This model would be classified as a K-nary Classification where all the predictions
+#will belong to the "No" outcome.
+
+
 #NATEGLINIDE analysis
 table(data_train$nateglinide)
 #data is imbalanced
@@ -174,6 +185,11 @@ t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
 colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
+
+#Establishing Baseline Performance
+#This model would be classified as a K-nary Classification where all the predictions
+#will belong to the "No" outcome.
+
 
 
 #CHLORPROPAMIDE analysis
@@ -211,6 +227,11 @@ colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
+#Establishing Baseline Performance
+#This model would be classified as a K-nary Classification where all the predictions
+#will belong to the "No" outcome.
+
+
 #GLIMEPIRIDE analysis
 table(data_train$glimepiride)
 
@@ -247,10 +268,18 @@ colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
+#Establishing Baseline Performance
+#This model would be classified as a K-nary Classification where all the predictions
+#will belong to the "No" outcome.
+
 
 #ACETOHEXAMIDE Analysis
 table(data_train$acetohexamide)
 #balancing the Steady value is not needed as there is only 1 result.
+
+#Establishing a baseline performance
+#This model would be classified as a Binary Classification where the "No" outcome will 
+#result in a all negative model whereas the "Steady" outcome will result in a all positive model.
 
 
 #GLIPIZIDE Analysis
@@ -287,6 +316,11 @@ t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
 colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
+
+#Establishing Baseline Performance
+#This model would be classified as a K-nary Classification where all the predictions
+#will belong to the "No" outcome.
+
 
 
 #GLYBURIDE analysis
@@ -326,6 +360,11 @@ colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
+#Establishing Baseline Performance
+#This model would be classified as a K-nary Classification where all the predictions
+#will belong to the "No" outcome.
+
+
 
 #TOLBUTAMIDE analysis
 table(data_train$tolbutamide)
@@ -347,6 +386,11 @@ t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
 colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
+
+#Establishing a baseline performance
+#This model would be classified as a Binary Classification where the "No" outcome will 
+#result in a all negative model whereas the "Steady" outcome will result in a all positive model.
+
 
 
 #PIOGLITAZONE analyis
@@ -387,6 +431,11 @@ colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
+#Establishing Baseline Performance
+#This model would be classified as a K-nary Classification where all the predictions
+#will belong to the "No" outcome.
+
+
 
 #ROSIGLITAZONE analysis
 table(data_train$rosiglitazone)
@@ -425,6 +474,11 @@ colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
+#Establishing Baseline Performance
+#This model would be classified as a K-nary Classification where all the predictions
+#will belong to the "No" outcome.
+
+
 
 #ACARBOSE
 table(data_train$acarbose)
@@ -461,6 +515,11 @@ t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
 colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
+
+#Establishing Baseline Performance
+#This model would be classified as a K-nary Classification where all the predictions
+#will belong to the "No" outcome.
+
 
 
 #MIGLITOL
@@ -499,6 +558,11 @@ colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
+#Establishing Baseline Performance
+#This model would be classified as a K-nary Classification where all the predictions
+#will belong to the "No" outcome.
+
+
 
 #TROGLITAZONE analysis
 table(data_train$troglitazone)
@@ -529,16 +593,22 @@ colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
+#Establishing a baseline performance
+#This model would be classified as a Binary Classification where the "No" outcome will 
+#result in a all negative model whereas the "Steady" outcome will result in a all positive model.
+
+
 
 
 #EXAMIDE analysis
 table(data_train$examide)
 #No balancning required as there is only one value displayed.
-
+#No need to establish Baseline Performance
 
 #CITOGLIPTON analysis
 table(data_train$examide)
 #No balancning required as there is only one value displayed.
+#No need to establish Baseline Performance
 
 
 #INSULIN analysis
@@ -579,6 +649,9 @@ colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
+#Establishing Baseline Performance
+#This model would be classified as a K-nary Classification where all the predictions
+#will belong to the "No" outcome.
 
 
 
@@ -619,6 +692,11 @@ colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
+#Establishing Baseline Performance
+#This model would be classified as a K-nary Classification where all the predictions
+#will belong to the "No" outcome.
+
+
 
 #GLIPIZIDE.METFORMIN analysis
 table(data_train$glipizide.metformin)
@@ -640,6 +718,11 @@ t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
 colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
+
+#Establishing a baseline performance
+#This model would be classified as a Binary Classification where the "No" outcome will 
+#result in a all negative model whereas the "Steady" outcome will result in a all positive model.
+
 
 
 #GLIMEPIRIDE.PIOGLITAZONE analysis
@@ -668,10 +751,16 @@ colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
+#Establishing a baseline performance
+#This model would be classified as a Binary Classification where the "No" outcome will 
+#result in a all negative model whereas the "Steady" outcome will result in a all positive model.
+
+
 
 #METFORMIN.PIOGLITAZONE analysis
 table(data_train$metformin.pioglitazone)
 #balancing not necessary as there is only one value in the "Steady" outcome.
 
-
-
+#Establishing a baseline performance
+#This model would be classified as a Binary Classification where the "No" outcome will 
+#result in a all negative model whereas the "Steady" outcome will result in a all positive model.

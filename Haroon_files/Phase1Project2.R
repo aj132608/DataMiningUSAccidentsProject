@@ -57,7 +57,7 @@ t.v1 <- table(train_data_rebal$readmitted)
 t.v1
 
 t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
-colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
+colnames(t.v2) <- c("readmitted=<30","readmitted=>30", "readmitted=NO")
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
@@ -764,3 +764,13 @@ table(data_train$metformin.pioglitazone)
 #Establishing a baseline performance
 #This model would be classified as a Binary Classification where the "No" outcome will 
 #result in a all negative model whereas the "Steady" outcome will result in a all positive model.
+
+
+#PHASE 2
+
+
+
+
+
+
+

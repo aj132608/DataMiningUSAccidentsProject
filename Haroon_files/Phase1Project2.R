@@ -100,7 +100,7 @@ t.v1 <- table(train_data_rebal$metformin)
 t.v1
 
 t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
-colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
+colnames(t.v2) <- c("metformin=Down","metformin=No", "metformin=Steady", "metformin=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
@@ -141,7 +141,7 @@ t.v1 <- table(train_data_rebal$repaglinide)
 t.v1
 
 t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
-colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
+colnames(t.v2) <- c("repaglinide=Down","repaglinide=No", "repaglinide=Steady", "repaglinide=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
@@ -182,7 +182,7 @@ t.v1 <- table(train_data_rebal$nateglinide)
 t.v1
 
 t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
-colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
+colnames(t.v2) <- c("nateglinide=Down","nateglinide=No", "nateglinide=Steady", "nateglinide=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
@@ -223,7 +223,7 @@ t.v1 <- table(train_data_rebal$chlorpropamide)
 t.v1
 
 t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
-colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
+colnames(t.v2) <- c("chlorpropamide=Down","chlorpropamide=No", "chlorpropamide=Steady", "chlorpropamide=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
@@ -264,7 +264,7 @@ t.v1 <- table(train_data_rebal$glimepiride)
 t.v1
 
 t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
-colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
+colnames(t.v2) <- c("glimepiride=Down","glimepiride=No", "glimepiride=Steady", "glimepiride=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
@@ -313,7 +313,7 @@ t.v1 <- table(train_data_rebal$glipizide)
 t.v1
 
 t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
-colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
+colnames(t.v2) <- c("glipizide=Down","glipizide=No", "glipizide=Steady", "glipizide=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
@@ -356,7 +356,7 @@ t.v1 <- table(train_data_rebal$glyburide)
 t.v1
 
 t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
-colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
+colnames(t.v2) <- c("glyburide=Down","glyburide=No", "glyburide=Steady", "glyburide=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
@@ -382,8 +382,8 @@ train_data_rebal <- rbind(data_train, our.resample)
 t.v1 <- table(train_data_rebal$tolbutamide)
 t.v1
 
-t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
-colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
+t.v2<-rbind(t.v1,round(prop.table(t.v1),2))
+colnames(t.v2) <- c("tolbutamide=No", "tolbutamide=Steady")
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
@@ -427,7 +427,7 @@ t.v1 <- table(train_data_rebal$pioglitazone)
 t.v1
 
 t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
-colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
+colnames(t.v2) <- c("pioglitazone=Down","pioglitazone=No", "pioglitazone=Steady", "pioglitazone=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
@@ -470,7 +470,7 @@ t.v1 <- table(train_data_rebal$rosiglitazone)
 t.v1
 
 t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
-colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
+colnames(t.v2) <- c("rosiglitazone=Down","rosiglitazone=No", "rosiglitazone=Steady", "rosiglitazone=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
@@ -512,7 +512,7 @@ t.v1 <- table(train_data_rebal$acarbose)
 t.v1
 
 t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
-colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
+colnames(t.v2) <- c("acarbose=Down","acarbose=No", "acarbose=Steady", "acarbose=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
@@ -554,7 +554,7 @@ t.v1 <- table(train_data_rebal$miglitol)
 t.v1
 
 t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
-colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
+colnames(t.v2) <- c("miglitol=Down","miglitol=No", "miglitol=Steady", "miglitol=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
@@ -588,8 +588,8 @@ t.v1 <- table(train_data_rebal$tolazamide)
 t.v1
 
 
-t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
-colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
+t.v2<-rbind(t.v1,round(prop.table(t.v1),3))
+colnames(t.v2) <- c("tolazamide=No", "tolazamide=Steady", "tolazamide=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
@@ -606,7 +606,7 @@ table(data_train$examide)
 #No need to establish Baseline Performance
 
 #CITOGLIPTON analysis
-table(data_train$examide)
+table(data_train$citoglipton)
 #No balancning required as there is only one value displayed.
 #No need to establish Baseline Performance
 
@@ -645,7 +645,7 @@ t.v1 <- table(train_data_rebal$insulin)
 t.v1
 
 t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
-colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
+colnames(t.v2) <- c("insulin=Down","insulin=No", "insulin=Steady", "insulin=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
@@ -688,7 +688,7 @@ t.v1 <- table(train_data_rebal$glyburide.metformin)
 t.v1
 
 t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
-colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
+colnames(t.v2) <- c("glyburide.metformin=Down","glyburide.metformin=No", "glyburide.metformin=Steady", "glyburide.metformin=Up")
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
@@ -714,8 +714,8 @@ train_data_rebal <- rbind(data_train, our.resample1)
 t.v1 <- table(train_data_rebal$glipizide.metformin)
 t.v1
 
-t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
-colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
+t.v2<-rbind(t.v1,round(prop.table(t.v1),2))
+colnames(t.v2) <- c("glipizide.metformin=No", "glipizide.metformin=Steady")
 rownames(t.v2) <- c("count","proportion")
 t.v2
 
@@ -746,8 +746,8 @@ train_data_rebal <- rbind(data_train, our.resample1)
 t.v1 <- table(train_data_rebal$metformin.rosiglitazone)
 t.v1
 
-t.v2<-rbind(t.v1,round(prop.table(t.v1),4))
-colnames(t.v2) <- c("Glimepiride=Down","Glimepiride=No", "Glimepiride=Steady", "Glimepiride=Up")
+t.v2<-rbind(t.v1,round(prop.table(t.v1),2))
+colnames(t.v2) <- c("metformin.rosiglitazone=No", "metformin.rosiglitazone=Steady")
 rownames(t.v2) <- c("count","proportion")
 t.v2
 

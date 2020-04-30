@@ -1,22 +1,6 @@
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-
-diabetes_data = pd.read_csv('diabetic_data.csv')
-
-# print(diabetes_data.head())
-
-possible_diagnosis = [
-                        "circulatory",
-                        "respiratory",
-                        "digestive",
-                        "diabetes",
-                        "injury",
-                        "musculoskeletal",
-                        "genitourinary",
-                        "neoplasms",
-                        "other"
-                     ]
+# import numpy as np
+# import matplotlib.pyplot as plt
 
 
 def determine_diag_map(icd9_code):
@@ -58,22 +42,44 @@ def determine_diag_map(icd9_code):
             return "other"
 
 
-#
-for diagnosis_type in possible_diagnosis:
-    diabetes_data[diagnosis_type] = ""
-# Bin the diagnoses
-diabetes_data["diag_1_binned"] = list(map(determine_diag_map, diabetes_data["diag_1"].values))
-diabetes_data["diag_2_binned"] = list(map(determine_diag_map, diabetes_data["diag_2"].values))
-diabetes_data["diag_3_binned"] = list(map(determine_diag_map, diabetes_data["diag_3"].values))
+if __name__ == "__main__":
+    diabetes_data = pd.read_csv('diabetic_data.csv')
 
-print(f"Post-bin shape: {diabetes_data.tail()}")
-# Create a new data frame using the binned diagnoses
-diagnosis_df = diabetes_data[["diag_1_binned",
-                              "diag_2_binned",
-                              "diag_3_binned"]].stack().str.get_dummies().sum(level=0)
+    # print(diabetes_data.head())
 
-diagnosis_df[diagnosis_df > 1] = 1
+    possible_diagnosis = [
+        "circulatory",
+        "respiratory",
+        "digestive",
+        "diabetes",
+        "injury",
+        "musculoskeletal",
+        "genitourinary",
+        "neoplasms",
+        "other"
+    ]
 
-print(diagnosis_df.tail())
+    for diagnosis_type in possible_diagnosis:
+        diabetes_data[diagnosis_type] = ""
+    # Bin the diagnoses
+    diabetes_data["diag_1_binned"] = list(map(determine_diag_map, diabetes_data["diag_1"].values))
+    diabetes_data["diag_2_binned"] = list(map(determine_diag_map, diabetes_data["diag_2"].values))
+    diabetes_data["diag_3_binned"] = list(map(determine_diag_map, diabetes_data["diag_3"].values))
+
+    # Create a new data frame using the binned diagnoses
+    diagnosis_df = diabetes_data[["diag_1_binned",
+                                  "diag_2_binned",
+                                  "diag_3_binned"]].stack().str.get_dummies().sum(level=0)
+
+    diagnosis_df[diagnosis_df > 1] = 1
+
+    for diagnosis_type in possible_diagnosis:
+        diabetes_data[diagnosis_type] = diagnosis_df[diagnosis_type]
+
+    print(diabetes_data.head())
+
+    # for diagnosis_type in possible_diagnosis:
+    #     print(diabetes_data[diagnosis_type].head())
+    diabetes_data.to_csv('updated_data.csv')
 
 

@@ -1,6 +1,6 @@
 #PROJECT 2
-# setwd("/Users/zaynabsaeed/Documents/CS4331_001_hsaeed_v1")
-data <- read.csv("diabetic_data.csv", sep = ",", header = TRUE)
+setwd("/Users/aj132/Documents/github/DataMiningUSAccidentsProject/Haroon_files")
+data <- read.csv("updated_data_removed_outliers.csv", sep = ",", header = TRUE)
 id <- read.csv("IDs_mapping.csv", sep = ",", header = TRUE)
 
 set.seed(5) #generates random numbers
@@ -768,7 +768,18 @@ table(data_train$metformin.pioglitazone)
 
 #PHASE 2
 
-
+#change the categorical variables to factors
+# data_train$readmitted <- factor(data_train$readmitted)
+# data_train$metformin <- factor(data_train$metformin)
+# #install and load the rpart and rpart.plot packages (only install once)
+# # install.packages(c("rpart","rpart.plot"))
+# library(rpart); library(rpart.plot)
+# #build the CART model using a "class" (classification) model
+# cart01 <- rpart(formula = readmitted ~ metformin + glyburide + insulin + diag_1 + diag_2 + diag_3,
+#                 data = train_data_rebal, method = "class",
+#                 control = rpart.control(minsplit=30, cp=0.001) )
+# # #plot the CART model
+# rpart.plot(cart01)
 
 
 

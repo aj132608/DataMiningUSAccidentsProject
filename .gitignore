@@ -1,3 +1,13 @@
-*.csv
-.Rproj.user
+# Jetbrains Software
 .idea/
+__pycache__/
+*.pyc
+
+# The dataset
+*.csv
+
+# Extrenuous R Files
+.Rproj.user
+*.Rmd
+.RData
+.RHistory

@@ -3,50 +3,62 @@ title: "R Notebook"
 output: html_notebook
 ---
 
-setwd("/Users/zaynabsaeed/Documents/R_Assignments")
+<!-- install.packages("rmarkdown") -->
+<!-- install.packages("plyr") -->
+<!-- install.packages("ggplot2") -->
 
-data_train <- read.csv("diabetic_data.csv", sep = ",", header = TRUE)
-id_train <- read.csv("IDs_mapping.csv", sep = ",", header = TRUE)
 
-install.packages("rmarkdown")
-install.packages("plyr")
-install.packages("ggplot2")
+<!-- render("DataMiningProjectOutliers.Rmd") -->
+
+# Prepare the environment
+
+```{r}
+setwd("/Users/aj132/Documents/github/DataMiningUSAccidentsProject/Haroon_files")
 
 library(plyr)
 library(ggplot2)
 library(rmarkdown)
 
+data_train <- read.csv("updated_data.csv", sep = ",", header = TRUE)
+id_train <- read.csv("IDs_mapping.csv", sep = ",", header = TRUE)
+```
 
-render("DataMiningProjectOutliers.Rmd")
+# Plan of action
 
-#target is readmitted
+* Target Variable: readmitted
 
-#predictors are medication taken, age, and diagnosis_number
+* Predictors: medication taken, age, and diag_1-3
+
+
+# Identify outliers in Age
+
 ```{r}
 
 #age ANALYSIS
 
 #converting age to numerical form
-age.num <- revalue(x = data_train$age, replace = c("[0-10)" = 0, "[10-20)" = 1,
-                                                   "[20-30)" = 2, "[30-40)" = 3,
-                                                   "[40-50)" = 4, "[50-60)" = 5, 
-                                                   "[60-70)" = 6, "[70-80)" = 7,
-                                                   "[80-90)" = 8, "[90,100)" = 9))
+# age.num <- revalue(x = data_train$age, replace = c("[0-10)" = 0, "[10-20)" = 1,
+#                                                    "[20-30)" = 2, "[30-40)" = 3,
+#                                                    "[40-50)" = 4, "[50-60)" = 5, 
+#                                                    "[60-70)" = 6, "[70-80)" = 7,
+#                                                    "[80-90)" = 8, "[90,100)" = 9))
+# 
+# data_train$age_numeric <-as.numeric(levels(age.num))[age.num]
 
-data_train$age_numeric <-as.numeric(levels(age.num))[age.num]
-
-hist(data_train$age_numeric,xlab="age_numeric", 
+hist(data_train$new_ages,xlab="new_ages_numeric", 
      main = "Historgram of age_numeric")
 
 #Standardizing the data
-data_train$age_numeric_z <- scale(x=data_train$age_numeric)
-
-#Identify outliers
-data_outliers_age <- data_train[which(data_train$age_numeric_z < -3 | 
+data_train$age_numeric_z <- scale(x=data_train$new_ages)
+# 
+# #Identify outliers
+data_outliers_age <- data_train[which(data_train$age_numeric_z < -3 |
                                                 data_train$age_numeric_z > 3),]
 #852 outliers detected
 ```
 
+
+# 
 
 ```{r}
 
@@ -595,3 +607,7 @@ data_outliers_metformin.pioglitazone <- data_train[which(data_train$metformin.pi
 #1 outlier detected
 ```
 
+
+```{r}
+write.csv(data_train,"updated_data_removed_outliers.csv")
+```

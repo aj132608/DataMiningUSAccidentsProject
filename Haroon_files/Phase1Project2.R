@@ -781,7 +781,69 @@ table(data_train$metformin.pioglitazone)
 # # #plot the CART model
 # rpart.plot(cart01)
 
+#setwd("/Users/zaynabsaeed/Documents/CSV_files")
 
+#plyr used for revaluing 
+install.packages("plyr")
+library(plyr)
+
+install.packages("sapply")
+library(sapply)
+
+#reading the updated CSV files 
+data_train <- read.csv("training_data.csv", sep = ",", header = TRUE)
+data_test <- read.csv("testing_data.csv", sep = ",", header = TRUE)
+data_outlier_remove <- read.csv("updated_data_removed_outliers-v1.csv",
+                                sep = ",", header = TRUE)
+
+
+#changing the readmitted variable to numeric 
+#converting metformin to numerical form
+
+#training set
+readmitted.num_train <- revalue(x = data_train$readmitted, 
+                                replace = c("NO" = 0, "<30" = 1, ">30" = 2))
+#testing set
+readmitted.num_test <- revalue(x = data_test$readmitted, 
+                               replace = c("NO" = 0, "<30" = 1, ">30" = 2))
+
+#removed outlier set
+readmitted.num_outlier_rm <- revalue(x = data_outlier_remove$readmitted, 
+                                     replace = c("NO" = 0, "<30" = 1, ">30" = 2))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#training set
+data_train$readmitted_numeric <-as.numeric(levels(readmitted.num_train))[readmitted.num_train]
+
+#testing set
+data_test$readmitted_numeric <-as.numeric(levels(readmitted.num_test))[readmitted.num_test]
+
+#removed outlier set
+data_outlier_remove$readmitted_numeric <-as.numeric(levels(readmitted.num_outlier_rm))[readmitted.num_outlier_rm]
+
+
+#Standardizing the data for training set
+data_train$readmitted_numeric_z <- scale(x=data_train$readmitted_numeric)
+
+#Standardizing the data for testing set
+data_test$readmitted_numeric_z <- scale(x=data_test$readmitted_numeric)
+
+#Standardizing the data for removed outlier set
+data_outlier_remove$readmitted_numeric_z <- scale(x=data_outlier_remove$readmitted_numeric)
 
 
 

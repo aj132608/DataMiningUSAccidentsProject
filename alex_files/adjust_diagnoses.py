@@ -76,7 +76,7 @@ if __name__ == "__main__":
     for diagnosis_type in possible_diagnosis:
         diabetes_data[diagnosis_type] = diagnosis_df[diagnosis_type]
 
-    print(diabetes_data.head())
+    # print(diabetes_data.columns)
 
     # for diagnosis_type in possible_diagnosis:
     #     print(diabetes_data[diagnosis_type].head())

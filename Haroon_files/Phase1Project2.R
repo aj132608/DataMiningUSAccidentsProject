@@ -766,20 +766,6 @@ table(data_train$metformin.pioglitazone)
 #result in a all negative model whereas the "Steady" outcome will result in a all positive model.
 
 
-#PHASE 2
-
-#change the categorical variables to factors
-# data_train$readmitted <- factor(data_train$readmitted)
-# data_train$metformin <- factor(data_train$metformin)
-# #install and load the rpart and rpart.plot packages (only install once)
-# # install.packages(c("rpart","rpart.plot"))
-# library(rpart); library(rpart.plot)
-# #build the CART model using a "class" (classification) model
-# cart01 <- rpart(formula = readmitted ~ metformin + glyburide + insulin + diag_1 + diag_2 + diag_3,
-#                 data = train_data_rebal, method = "class",
-#                 control = rpart.control(minsplit=30, cp=0.001) )
-# # #plot the CART model
-# rpart.plot(cart01)
 
 #setwd("/Users/zaynabsaeed/Documents/CSV_files")
 
@@ -787,8 +773,6 @@ table(data_train$metformin.pioglitazone)
 install.packages("plyr")
 library(plyr)
 
-install.packages("sapply")
-library(sapply)
 
 #reading the updated CSV files 
 data_train <- read.csv("training_data.csv", sep = ",", header = TRUE)
@@ -805,24 +789,11 @@ readmitted.num_train <- revalue(x = data_train$readmitted,
                                 replace = c("NO" = 0, "<30" = 1, ">30" = 2))
 #testing set
 readmitted.num_test <- revalue(x = data_test$readmitted, 
-                               replace = c("NO" = 0, "<30" = 1, ">30" = 2))
+                                replace = c("NO" = 0, "<30" = 1, ">30" = 2))
 
 #removed outlier set
 readmitted.num_outlier_rm <- revalue(x = data_outlier_remove$readmitted, 
                                      replace = c("NO" = 0, "<30" = 1, ">30" = 2))
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -845,5 +816,7 @@ data_test$readmitted_numeric_z <- scale(x=data_test$readmitted_numeric)
 #Standardizing the data for removed outlier set
 data_outlier_remove$readmitted_numeric_z <- scale(x=data_outlier_remove$readmitted_numeric)
 
-
+#write.csv(data_train,"training_data_v1.csv")
+#write.csv(data_test, "testing_data_v1.csv")
+#write.csv(data_outlier_remove, "updated_data_removed_outliers_v1.csv")
 

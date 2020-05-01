@@ -331,7 +331,7 @@ data_outliers_glimepiride <- data_train[which(data_train$glimepiride_numeric_z <
 
 #acetohexamide
 #converting acetohexamide to numerical form
-ace.num <- revalue(x = data_train$acetohexamide, replace = c("No" = 0, "Steady" = 1))
+ace.num <- revalue(x = data_train$acetohexamide, replace = c("No" = 0, "Steady" = 2))
 #suprisingly, "Down" and "Up" were not detected in this column
 
 data_train$acetohexamide_numeric <-as.numeric(levels(ace.num))[ace.num]
@@ -520,7 +520,7 @@ data_outliers_miglitol <- data_train[which(data_train$miglitol_numeric_z < -3 |
 
 #troglitazone
 #converting troglitazone to numerical form
-tro.num <- revalue(x = data_train$troglitazone, replace = c("No" = 0, "Steady" = 1))
+tro.num <- revalue(x = data_train$troglitazone, replace = c("No" = 0, "Steady" = 2))
 #suprisingly, "Down" and "Up" were not detected in this column
 
 data_train$troglitazone_numeric <-as.numeric(levels(tro.num))[tro.num]
@@ -543,7 +543,7 @@ data_outliers_troglitazone <- data_train[which(data_train$troglitazone_numeric_z
 
 #tolazamide
 #converting tolazamide to numerical form
-tolz.num <- revalue(x = data_train$tolazamide, replace = c("No" = 0, "Steady" = 1, "Up" = 2))
+tolz.num <- revalue(x = data_train$tolazamide, replace = c("No" = 0, "Steady" = 2, "Up" = 3))
 #suprisingly, "Down" was not detected in this column
 
 data_train$tolazamide_numeric <-as.numeric(levels(tolz.num))[tolz.num]
@@ -661,7 +661,7 @@ data_outliers_glyburide.metformin <- data_train[which(data_train$glyburide.metfo
 
 #glipizide.metformin
 #converting glipizide.metformin to numerical form
-glipm.num <- revalue(x = data_train$glipizide.metformin, replace = c("No" = 0, "Steady" = 1))
+glipm.num <- revalue(x = data_train$glipizide.metformin, replace = c("No" = 0, "Steady" = 2))
 #"Down" and "Up" not present in column
 
 data_train$glipizide.metformin_numeric <-as.numeric(levels(glipm.num))[glipm.num]
@@ -685,7 +685,7 @@ data_outliers_glipizide.metformin <- data_train[which(data_train$glipizide.metfo
 
 #glimepiride.pioglitazone
 #converting glimepiride.pioglitazone to numerical form
-glip.num <- revalue(x = data_train$glimepiride.pioglitazone, replace = c("No" = 0, "Steady" = 1))
+glip.num <- revalue(x = data_train$glimepiride.pioglitazone, replace = c("No" = 0, "Steady" = 2))
 #"Down" and "Up" not present in column
 
 data_train$glimepiride.pioglitazone_numeric <-as.numeric(levels(glip.num))[glip.num]
@@ -709,7 +709,7 @@ data_outliers_glimepiride.pioglitazone <- data_train[which(data_train$glimepirid
 
 #metformin.rosiglitazone
 #converting metformin.rosiglitazone to numerical form
-metr.num <- revalue(x = data_train$metformin.rosiglitazone, replace = c("No" = 0, "Steady" = 1))
+metr.num <- revalue(x = data_train$metformin.rosiglitazone, replace = c("No" = 0, "Steady" = 2))
 #"Down" and "Up" not present in column
 
 data_train$metformin.rosiglitazone_numeric <-as.numeric(levels(metr.num))[metr.num]
@@ -733,7 +733,7 @@ data_outliers_metformin.rosiglitazone <- data_train[which(data_train$metformin.r
 
 #metformin.pioglitazone
 #converting metformin.pioglitazone to numerical form
-metp.num <- revalue(x = data_train$metformin.pioglitazone, replace = c("No" = 0, "Steady" = 1))
+metp.num <- revalue(x = data_train$metformin.pioglitazone, replace = c("No" = 0, "Steady" = 2))
 #"Down" and "Up" not present in column
 
 
